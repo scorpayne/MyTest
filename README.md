@@ -5,5 +5,9 @@ rubbish
 
 what the fucker say?
 
+
 stash or not ?
+
+
+can commit?
 
