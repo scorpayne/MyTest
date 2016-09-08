@@ -16,6 +16,9 @@ import org.amfproject.other.core.utils.OTHERStringPool;
  */
 public class Parent {
     private Student s;
+
+    public Parent() {
+    }
     
     public Parent(Student s){
         this.s=s;
@@ -31,5 +34,7 @@ public class Parent {
         return result;
     }
     
-//    public 
+    public void changeStudentAge(Student s){
+        s.setAge(20);
+    }
 }

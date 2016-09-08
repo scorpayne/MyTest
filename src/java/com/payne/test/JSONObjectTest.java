@@ -5,13 +5,16 @@
  */
 package com.payne.test;
 
-import java.math.BigDecimal;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.payne.model.Student;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -44,43 +47,68 @@ public class JSONObjectTest{
 //        for(String str : l1){  
 //            System.out.println(str);  
 //        }
-        List<Long> vipUserIds = new ArrayList<Long>();
-        vipUserIds.add(123l);
-        vipUserIds.add(122l);
-        vipUserIds.add(122l);
-        vipUserIds.add(121l);
-
-        List<Long> orderUserIds = new ArrayList<Long>();
-        orderUserIds.add(100l);
-        orderUserIds.add(100l);
-        orderUserIds.add(121l);
-        orderUserIds.add(120l);
-        orderUserIds.add(180l);
-        
-        vipUserIds.removeAll(orderUserIds);
-        vipUserIds.addAll(orderUserIds);
-        
-        vipUserIds = new ArrayList<Long>(new HashSet<>(vipUserIds));  
-        
-        Comparator<Long> com = new Comparator<Long>() {
-            public int compare(Long l1, Long l2) {
-                BigDecimal bd1 = new BigDecimal(l1);
-                BigDecimal bd2 = new BigDecimal(l2);
-                BigDecimal bd3 = bd1.subtract(bd2);
-                return -(bd3.intValue());
-            }
-        };
-        Collections.sort(vipUserIds,com);
-//        Collections.sort(vipUserIds, new Comparator<Long>(){  
-//            public Long compare(Long l1, Long l2){  
+//        List<Long> vipUserIds = new ArrayList<Long>();
+//        vipUserIds.add(123l);
+//        vipUserIds.add(122l);
+//        vipUserIds.add(122l);
+//        vipUserIds.add(121l);
+//
+//        List<Long> orderUserIds = new ArrayList<Long>();
+//        orderUserIds.add(100l);
+//        orderUserIds.add(100l);
+//        orderUserIds.add(121l);
+//        orderUserIds.add(120l);
+//        orderUserIds.add(180l);
+//        
+//        vipUserIds.removeAll(orderUserIds);
+//        vipUserIds.addAll(orderUserIds);
+//        
+//        vipUserIds = new ArrayList<Long>(new HashSet<>(vipUserIds));  
+//        
+//        Comparator<Long> com = new Comparator<Long>() {
+//            public int compare(Long l1, Long l2) {
 //                BigDecimal bd1 = new BigDecimal(l1);
 //                BigDecimal bd2 = new BigDecimal(l2);
 //                BigDecimal bd3 = bd1.subtract(bd2);
-//                return bd3.longValue();
+//                return -(bd3.intValue());
 //            }
-//        });
-        for(Long userId : vipUserIds){  
-            System.out.println(userId);  
+//        };
+//        Collections.sort(vipUserIds,com);
+////        Collections.sort(vipUserIds, new Comparator<Long>(){  
+////            public Long compare(Long l1, Long l2){  
+////                BigDecimal bd1 = new BigDecimal(l1);
+////                BigDecimal bd2 = new BigDecimal(l2);
+////                BigDecimal bd3 = bd1.subtract(bd2);
+////                return bd3.longValue();
+////            }
+////        });
+//        for(Long userId : vipUserIds){  
+//            System.out.println(userId);  
+//        }
+        
+        /**
+         * 测试ObjectMapper 的 writeValueAsString  可以转换map list
+         */
+        ObjectMapper mapper = new ObjectMapper();
+        List<Student> students = new ArrayList<>();
+        
+        List<String> categoryList = new ArrayList<>();
+        categoryList.add("学生1");
+        categoryList.add("学生2");
+        
+        Map<String,String> map = new HashMap<>();
+        map.put("学生1", "155");
+        map.put("学生2", "160");
+        
+        students.add(new Student(10));
+        students.add(new Student(20));
+        String writeValueAsString = "";
+        try {
+//            writeValueAsString = mapper.writeValueAsString(students);
+            writeValueAsString = mapper.writeValueAsString(categoryList);
+        } catch (JsonProcessingException ex) {
+            Logger.getLogger(JSONObjectTest.class.getName()).log(Level.SEVERE, null, ex);
         }
+        System.out.println(writeValueAsString);
     }
 }
