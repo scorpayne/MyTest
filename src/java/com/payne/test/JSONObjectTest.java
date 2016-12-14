@@ -15,13 +15,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.amfproject.other.core.utils.OTHERObjectMapperUtils;
 
 /**
  *
  * @author Administrator
  */
-public class JSONObjectTest{
-    public static void main(String[] args) throws ParseException{
+public class JSONObjectTest {
+
+    public static void main(String[] args) throws ParseException {
 //        JSONArray a = null;
 //        String b ="[{'id':10,'serviceId':13,'b2bProductId':10,'accessoryName':'nimeiya','accessoryBrand':'test','price':10000,'accessoryNum':'1','createdTime':'2016-03-14T14:21:35+08:00','updateTime':'2016-03-14T14:21:35+08:00','status':'NORMAL'}]";
 //        a = new JSONArray(b);
@@ -85,27 +87,32 @@ public class JSONObjectTest{
 //        for(Long userId : vipUserIds){  
 //            System.out.println(userId);  
 //        }
-        
+
         /**
-         * 测试ObjectMapper 的 writeValueAsString  可以转换map list
+         * 测试ObjectMapper 的 writeValueAsString 可以转换map list
          */
         ObjectMapper mapper = new ObjectMapper();
         List<Student> students = new ArrayList<>();
-        
+
         List<String> categoryList = new ArrayList<>();
         categoryList.add("学生1");
         categoryList.add("学生2");
-        
-        Map<String,String> map = new HashMap<>();
+
+        Map<String, String> map = new HashMap<>();
         map.put("学生1", "155");
         map.put("学生2", "160");
-        
+
+//        for (Map.Entry<String, String> entry : map.entrySet()) {
+//            System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+//        }
         students.add(new Student(10));
         students.add(new Student(20));
         String writeValueAsString = "";
         try {
 //            writeValueAsString = mapper.writeValueAsString(students);
-            writeValueAsString = mapper.writeValueAsString(categoryList);
+//            writeValueAsString = mapper.writeValueAsString(categoryList);
+            writeValueAsString = mapper.writeValueAsString(map);
+//            writeValueAsString = OTHERObjectMapperUtils.getDefaultJSONMapper().writeValueAsString(map);
         } catch (JsonProcessingException ex) {
             Logger.getLogger(JSONObjectTest.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -5,7 +5,12 @@
  */
 package com.payne.test;
 
+import com.payne.map.MapTestObject;
+import com.payne.map.OrderType;
 import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.List;
+import org.amfproject.other.core.utils.OTHERStringUtils;
 
 /**
  *
@@ -58,8 +63,40 @@ public class StringTest {
 //        for(String s: split){
 //            System.out.println(s);
 //        }
-        String str = "\":\"";
-        System.out.println(str);
+//        MapTestObject mto = new MapTestObject();
+//        mto.setOrderType(OrderType.TWO);
+//        
+//        String str = "\":\"";
+//        System.out.println(str);
+//        String a = "黄色,红色";
+////
+//        String[] splits = a.split(".");
+//        List<String> asList = Arrays.asList(splits);
+
+//        String last = "黄色";
+//        String last = "白色";
+//        String last = "红色";
+//        if (!asList.isEmpty()) {
+//            if (asList.indexOf(last) > -1) {
+//                int indexOf = asList.indexOf(last);
+//                if (indexOf + 1 >= asList.size()) {
+//                    System.out.println("没有下个状态");
+//                }else{
+//                    String next = asList.get(indexOf + 1);
+//                    if (OTHERStringUtils.isEmpty(next)) {
+//                        System.out.println("没有下个状态");
+//                    } else {
+//                        System.out.println("下个状态：" + next);
+//                    }
+//                }
+//            } else {
+//                System.out.println("上个状态错误");
+//            }
+//        } else {
+//            System.out.println("状态列表未解析正确");
+//        }
+
+           System.out.println("上个状态错误\",\""); 
 
     }
 

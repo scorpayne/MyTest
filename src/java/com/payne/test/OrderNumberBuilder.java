@@ -5,37 +5,32 @@
  */
 package com.payne.test;
 
-import java.math.BigDecimal;
-import java.math.MathContext;
-import java.math.RoundingMode;
 import java.text.NumberFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
+import java.util.Random;
 
 /**
  *
  * @author Administrator
  */
 public class OrderNumberBuilder {
+
     //在类加载时便实例化了
     private static OrderNumberBuilder instance = new OrderNumberBuilder();
-    private OrderNumberBuilder(){
-        
+
+    private OrderNumberBuilder() {
+
     }
-    
-    
-    public static OrderNumberBuilder getInstance(){
+
+    public static OrderNumberBuilder getInstance() {
         return instance;
     }
-    
-    public static void main(String[] args) throws ParseException{
+
+    public static void main(String[] args) throws ParseException {
 //        SimpleDateFormat df = new SimpleDateFormat("yyMMddHHmmss");
 //        String format = df.format(new Date());
 //        System.out.println(format);
-        
+
 //        double num = 12343171.6; 
 //        double perNum = 0.23; 
 //        //获取常规数值格式  
@@ -69,7 +64,6 @@ public class OrderNumberBuilder {
 //        
 //        String format = String.format("%.2f",0.3546546);
 //        System.out.println(format); 
-            
 //          BigDecimal amount = new BigDecimal("-120.00");
 //          BigDecimal amount2 = new BigDecimal("0.5");
 //          BigDecimal amount3 = BigDecimal.ZERO;
@@ -101,6 +95,24 @@ public class OrderNumberBuilder {
 //        }
 //        String randomNum = b.toString();
 //        
+//        System.out.println(randomNum);
+        int count = 0;
+        int i;
+        final int maxNumber = 10;
+        char[] c = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+        Random r = new Random();
+        StringBuilder b = new StringBuilder();
+
+        while (count < 6) {
+            i = Math.abs(r.nextInt(maxNumber));
+
+            if (i >= 0 && i < c.length) {
+                b.append(c[i]);
+                count++;
+            }
+        }
+        System.out.println("随机数：" + b.toString());
+
 //        System.out.println(format+randomNum);
 //         SimpleDateFormat sdf = new SimpleDateFormat("");
 //         Date a = new Date(1450889539);
@@ -146,12 +158,9 @@ public class OrderNumberBuilder {
 //        System.out.println(c.getTime());
 //        System.out.println(a.getYear());
 //        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-          
-          
-        NumberFormat format = NumberFormat.getPercentInstance();// 获取格式化类实例
-        format.setMinimumFractionDigits(2);// 设置小数位
-        System.out.println(format.format(17.2 / 100.0));// 打印计算结果
-          
+//        NumberFormat format = NumberFormat.getPercentInstance();// 获取格式化类实例
+//        format.setMinimumFractionDigits(2);// 设置小数位
+//        System.out.println(format.format(17.2 / 100.0));// 打印计算结果
     }
-    
+
 }

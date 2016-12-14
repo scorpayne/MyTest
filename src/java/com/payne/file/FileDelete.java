@@ -43,24 +43,41 @@ public class FileDelete {
         return result;
     }
 
-//    public boolean deleteFilePath(String path) {
-//        File file = new File(path);
-//        boolean result = false;
-//        if (file.isDirectory()) {
-//            File[] delFiles = file.listFiles();
-//            for(File delFile: delFiles){
-//                if(delFile.isDirectory()){
-//                    System.out.println("删除文件目录");
-//                    deleteFilePath(delFile.getAbsolutePath());// 递归调用del方法并取得子目录路径  
-//                }
-//                result = delFile.delete();
-//            }
-//        }else if(file.isFile()){
-//            System.out.println("删除文件");
-//            result = file.delete();
-//        }
-//        return result;
-//    }
+    public boolean delFile(File file) {
+        boolean result = false;
+        if (file.isDirectory()) {
+            File[] delFiles = file.listFiles();
+            if (delFiles.length > 0) {
+                for (File delFile : delFiles) {
+                    if (delFile.isDirectory()) {
+                        System.out.println("删除文件目录");
+                        result = delFile(delFile);// 递归调用del方法并取得子目录路径  
+                    } else {
+                        result = delFile.delete();
+                    }
+                    if (!result) {
+                        System.out.println("删除错误的文件或目录名：" + file.getName());
+                        break; //直接跳出循环
+                    }
+                }
+                if (result) {
+                    //表示所有目录及子目录都删除了
+                    return file.delete();
+                } else {
+                    System.out.println("删除文件错误");
+                    return result;
+                }
+            } else {
+                //表示目录下没有文件，直接删除
+                result = file.delete();
+            }
+        } else if (file.isFile()) {
+            System.out.println("删除的是文件");
+            result = file.delete();
+        }
+        return result;
+    }
+
     public boolean delFilterFile(File filePath, final String filter) {
         boolean result = false;
 
@@ -93,13 +110,47 @@ public class FileDelete {
         return result;
     }
 
+    public boolean deleteFileByFilter(File filePath, final String filter) {
+        boolean result = false;
+        if (filePath.isDirectory()) {
+            File[] listFiles = filePath.listFiles(new FilenameFilter() {
+
+                @Override
+                public boolean accept(File dir, String name) {
+                    if (dir != null && name.contains(filter)) {
+                        return true;  //表示 筛选出符合该条件的文件
+                    } else {
+                        return false;  //剔除
+                    }
+                }
+            });
+            if (listFiles.length > 0) {
+                for (File file : listFiles) {
+                    result = delFile(file);
+                    if (!result) {
+                        System.out.println("删除错误的文件或目录名：" + file.getName());
+                        break;
+                    }
+                }
+            } else {
+                result = true;
+            }
+        } else if (filePath.isFile()) {
+            if (filePath.getName().contains(filter)) {
+                result = filePath.delete();
+            }
+        }
+        return result;
+    }
+
     public static void main(String[] args) throws IOException {
         FileDelete fu = new FileDelete();
 //        fu.deleteFile(new File("E:/file/test"));
-        System.out.println(fu.delFilterFile(new File("E:/file"), "coolcto"));
+//        System.out.println(fu.delFilterFile(new File("E:/file"), "coolcto"));
 //        FileUtils.deleteDirectory(new File("E:/file/test1"));
 //        FileUtils.forceDelete(new File("E:/file/test"));
 //        System.out.println(fu.delFile(new File("E:/file/test1")));
+        System.out.println("删除目录的结果：" + fu.deleteFileByFilter(new File("e:/file"), "chuanghe"));
 
     }
 }
