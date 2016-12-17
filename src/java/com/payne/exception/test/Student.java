@@ -18,4 +18,12 @@ public class Student {
             System.out.println("the number is:" + m);
         }
     }
+    
+    public String say(int randomNum){
+        if(randomNum == 5){
+            throw new RuntimeException("haha");
+        }else{
+            return "SUCCESS";
+        }
+    }
 }

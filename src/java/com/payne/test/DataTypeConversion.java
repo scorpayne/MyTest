@@ -28,17 +28,24 @@ public class DataTypeConversion {
 //        System.out.println(System.currentTimeMillis());
         
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String data = sdf.format(new Date());
+        
+        Date date = null;
         try {
-            Date a = sdf.parse(data);
-            System.out.println(a.toString());
+            //        String data = sdf.format(new Date());
+//        try {
+//            Date a = sdf.parse(data);
+//            System.out.println(a.toString());
+//        } catch (ParseException ex) {
+//            Logger.getLogger(DataTypeConversion.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+            date = sdf.parse("2015-1-30");
         } catch (ParseException ex) {
             Logger.getLogger(DataTypeConversion.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-//        Calendar c = Calendar.getInstance();
-//        c.setTime(new Date());
-//        c.add(Calendar.DATE,2);
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        c.add(Calendar.MONTH,1);
 //        String format = sdf.format(c.getTime());
 //        try {
 //            c.setTime(sdf.parse(format));
@@ -47,6 +54,6 @@ public class DataTypeConversion {
 //        } catch (ParseException ex) {
 //            Logger.getLogger(DataTypeConversion.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-        
+        System.out.println(c.getTime());
     }
 }

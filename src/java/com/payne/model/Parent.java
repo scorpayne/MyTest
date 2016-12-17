@@ -50,5 +50,4 @@ public class Parent {
         this.age = age;
     }
 
-
 }
