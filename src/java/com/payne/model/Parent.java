@@ -15,21 +15,40 @@ import org.amfproject.other.core.utils.OTHERStringPool;
  * @author Administrator
  */
 public class Parent {
-    private Student s;
+
+    private Student student;
     
-    public Parent(Student s){
-        this.s=s;
+    private int age;
+    
+    public Parent(Student student) {
+        this.student = student;
     }
-    
-    public StatusModel<String> translate(String words){
+
+    public StatusModel<String> translate(String words) {
         StatusModel<String> result = null;
         try {
-            result = s.speak(words);
+            result = student.speak(words);
         } catch (BusinessException ex) {
             return StatusModel.showBusinessMsg(ex, "说话", ex.getMessage());
         }
         return result;
     }
-    
-//    public 
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+
 }
