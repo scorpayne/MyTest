@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.amfproject.other.core.utils.OTHERObjectMapperUtils;
@@ -98,10 +99,13 @@ public class JSONObjectTest {
         categoryList.add("学生1");
         categoryList.add("学生2");
 
-        Map<String, String> map = new HashMap<>();
-        map.put("学生1", "155");
-        map.put("学生2", "160");
-
+        Map<String, Integer> map = new HashMap<>();
+        map.put("学生1", 155);
+        map.put("学生2", 160);
+        
+        for(Map.Entry<String,Integer> entry:map.entrySet()){
+            System.out.println("key = "+entry.getKey()+",value = "+entry.getValue());
+        }
 //        for (Map.Entry<String, String> entry : map.entrySet()) {
 //            System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
 //        }
