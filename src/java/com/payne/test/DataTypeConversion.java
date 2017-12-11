@@ -27,9 +27,10 @@ public class DataTypeConversion {
 //        System.out.println(sdf.format(new Date(System.currentTimeMillis())));
 //        System.out.println(System.currentTimeMillis());
         
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         
         Date date = null;
+        String dateStr = "";
         try {
             //        String data = sdf.format(new Date());
 //        try {
@@ -38,7 +39,8 @@ public class DataTypeConversion {
 //        } catch (ParseException ex) {
 //            Logger.getLogger(DataTypeConversion.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-            date = sdf.parse("2015-1-30");
+            dateStr = sdf.format(new Date());
+            date = sdf.parse("2015-1-30 16:45");
         } catch (ParseException ex) {
             Logger.getLogger(DataTypeConversion.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -55,5 +57,6 @@ public class DataTypeConversion {
 //            Logger.getLogger(DataTypeConversion.class.getName()).log(Level.SEVERE, null, ex);
 //        }
         System.out.println(c.getTime());
+        System.out.println(dateStr);
     }
 }

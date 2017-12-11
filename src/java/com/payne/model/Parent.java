@@ -20,6 +20,8 @@ public class Parent {
     
     private int age;
     
+    private boolean isMan;
+    
     public Parent(Student student) {
         this.student = student;
     }
@@ -50,4 +52,14 @@ public class Parent {
         this.age = age;
     }
 
+    public boolean isIsMan() {
+        return isMan;
+    }
+
+    public void setIsMan(boolean isMan) {
+        this.isMan = isMan;
+    }
+    
+    
+    
 }

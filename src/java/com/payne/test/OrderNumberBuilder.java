@@ -5,6 +5,7 @@
  */
 package com.payne.test;
 
+import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Random;
@@ -161,6 +162,9 @@ public class OrderNumberBuilder {
 //        NumberFormat format = NumberFormat.getPercentInstance();// 获取格式化类实例
 //        format.setMinimumFractionDigits(2);// 设置小数位
 //        System.out.println(format.format(17.2 / 100.0));// 打印计算结果
+        
+        BigDecimal chengshu = new BigDecimal("1000000000000000000000000000000");
+        System.out.println(chengshu.toString());
     }
 
 }

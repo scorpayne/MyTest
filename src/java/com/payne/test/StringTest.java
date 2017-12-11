@@ -7,6 +7,12 @@ package com.payne.test;
 
 import com.payne.model.Parent;
 import com.payne.model.Student;
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.apache.commons.lang.StringUtils;
 
 /**
  *
@@ -14,7 +20,7 @@ import com.payne.model.Student;
  */
 public class StringTest {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 //        String a = "160504185452148809-1";
 //        a = a.split("-")[0];
 //        System.out.println(a);
@@ -41,15 +47,15 @@ public class StringTest {
 //        Student s =  new Student();
 //        s.sumUp(new Integer[]{}.length==0?numbers:new Integer[]{1});
 //        s.sumUp(numbers);
-        Parent p = null;
-        Parent p2 = new Parent(new Student(5));
-
-        Student s = new Student();
-        p = s.print(p);
+//        Parent p = null;
+//        Parent p2 = new Parent(new Student(5));
+//
+//        Student s = new Student();
+//        p = s.print(p);
 
 //        System.out.println(p==null?0:1);
 //        System.out.println(p.getAge());
-        System.out.println(p.getStudent().getAge());
+//        System.out.println(p.getStudent().getAge());
 //        int ai = 0;
 //        for(int i=0;i<2;i++){
 //            int b = 0;
@@ -66,10 +72,10 @@ public class StringTest {
 //        int a = 1;
 //        a = doAdd(a);
 //        System.out.println(a);
-//        Pattern p = Pattern.compile("[0-9]*");
-//        Matcher m = p.matcher("5461.1");
-//        boolean b = m.matches();
-//        System.out.println(b);
+        Pattern p = Pattern.compile("^\\d{1,9}(.\\d{1,2})?$");
+        Matcher m = p.matcher("666666541.13");
+        boolean b = m.matches();
+        System.out.println(b);
 //          System.out.println(-2>>4);
 //        BigDecimal b = new BigDecimal(100.50);
 //        System.out.println(b.toString());
@@ -116,8 +122,20 @@ public class StringTest {
 //            System.out.println("状态列表未解析正确");
 //        }
 
-           System.out.println("上个状态错误\",\""); 
-
+//           System.out.println("上个状态错误\",\""); 
+//           String a ="1123";
+//           a = StringUtils.substring(a, 0, a.length()-1);
+//           System.out.println("a="+a);
+//           
+        int a = 0x12345678;  
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();  
+        DataOutputStream dos = new DataOutputStream(baos);  
+        dos.writeInt(a);  
+        System.out.println(Integer.toHexString(a));
+        byte[] c = baos.toByteArray();  
+        for(int i = 0;i<4;i++){  
+            System.out.println(Integer.toHexString(c[i]));  
+        }     
     }
 
 //    public static int doAdd(int a){

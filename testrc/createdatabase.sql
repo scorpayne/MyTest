@@ -1,5 +1,5 @@
-create database OTHERWebPlatform;
+create database kid;
 
-grant all on OTHERWebPlatform.* to lucy@localhost identified by '142857';
+grant all on kid.* to lucy@localhost identified by '142857';
 
-ALTER DATABASE `OTHERWebPlatform` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER DATABASE `kid` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
